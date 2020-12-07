@@ -19,3 +19,8 @@ img {
 body{
   overflow-x:hidden;
 }
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: cornflowerblue;
+}
