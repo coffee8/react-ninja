@@ -1,17 +1,13 @@
-import p from './Profile.module.css'
+import p from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = () => {
     return (
         <div className={p.content}>
+            <ProfileInfo/>
             <div>
-                <img src='https://www.pics4learning.com/images/pics-banner1-1300.jpg'></img>
-            </div>
-            <div>
-                ava + description
-            </div>
-            <div>
-                <MyPosts />
+                <MyPosts/>
             </div>
         </div>
     )

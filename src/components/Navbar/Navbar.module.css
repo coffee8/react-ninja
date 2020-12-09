@@ -4,11 +4,11 @@
     padding: 40px;
 }
 
-.item a{
+.item a {
     color: white;
     text-decoration: none;
 }
 
 .item .active {
-    color: gold;
+    color: blue;
 }
