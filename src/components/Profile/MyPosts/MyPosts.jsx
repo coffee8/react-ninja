@@ -2,6 +2,12 @@ import p from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = () => {
+
+    let postData = [{message: 'Hi, how are you?', likeCount: 0},
+        {message: 'Gooooood', likeCount: 21}]
+
+    let postsElements = postData.map( p => <div><Post message={p.message} likeCount={p.likeCount}/></div>)
+
     return (
         <div>
             <div className={p.margin}>
@@ -17,10 +23,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={`${p.posts} ${p.margin}`}>
-                <Post message='Hi, how are you?' likeCount='0'/>
-            </div>
-            <div className={`${p.posts} ${p.margin}`}>
-                <Post message='Thanks, what about you?' likeCount='12'/>
+                { postsElements }
             </div>
         </div>
 
