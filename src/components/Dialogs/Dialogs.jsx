@@ -1,27 +1,20 @@
 import s from './Dialogs.module.css'
-import {DialogItem} from "./DialogItem/DialogItem";
-import {Message} from "./Message/Message";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
 
-const Dialogs = () => {
+const Dialogs = (props) => {
 
-    let dialogData = [{name: 'Dima', id: 1},
-                      {name: 'Kolya', id: 2},]
-
-    let dialogs = dialogData.map(d => <DialogItem name={d.name} id={d.id}/>)
-
-    let messageData = [{message: 'Hi', id: 1},
-                       {message: 'Privet', id: 2},]
-
-    let messages = messageData.map(m => <Message message={m.message}/>)
+    let dialogs = props.state.dialogData.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let messages = props.state.messageData.map(m => <Message message={m.message}/>)
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                { dialogs }
+                {dialogs}
             </div>
 
             <div className={s.messages}>
-                { messages }
+                {messages}
             </div>
         </div>
     )
