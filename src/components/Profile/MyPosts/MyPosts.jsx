@@ -1,9 +1,20 @@
 import p from './MyPosts.module.css'
 import Post from './Post/Post'
+import * as React from "react";
 
 const MyPosts = (props) => {
-    let postsElements = props.postElements
-                             .postData.map(p => <div><Post message={p.message} likeCount={p.likeCount}/></div>);
+    let postsElements = props
+        .postElements
+        .postData
+        .map(p => <div><Post message={p.message} likeCount={p.likeCount}/></div>);
+
+    let newPostElement = React.createRef()
+
+    let addPost = () => {
+        let text = newPostElement.current.value
+        props.addPost(text)
+    }
+
     return (
         <div>
             <div className={p.margin}>
@@ -11,10 +22,10 @@ const MyPosts = (props) => {
             </div>
             <div className={p.margin}>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                     <button>Remove</button>
                 </div>
             </div>
