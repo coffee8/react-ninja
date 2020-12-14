@@ -11,18 +11,25 @@ let state = {
     profilePage: {
         postData:
             [{message: 'Hi, how are you?', likeCount: 0},
-            {message: 'Gooooood', likeCount: 21}]
+            {message: 'Gooooood', likeCount: 21}],
+        newPostText: 'IT_KAMASURTA'
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likeCount: 0
     };
     state.profilePage.postData.push(newPost);
+    state.profilePage.newPostText = ''
     renderEntireTree(state)
 }
 
+export let updateNewPostText = (newText) => {
+    debugger
+    state.profilePage.newPostText = newText;
+    renderEntireTree(state)
+}
 export default state
