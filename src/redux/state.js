@@ -1,4 +1,6 @@
-import {renderEntireTree} from '../render'
+let renderEntireTree = () => {
+    console.log('Hiiiiiii')
+}
 let state = {
     dialogsPage: {
         dialogData:
@@ -28,8 +30,11 @@ export let addPost = () => {
 }
 
 export let updateNewPostText = (newText) => {
-    debugger
     state.profilePage.newPostText = newText;
     renderEntireTree(state)
+}
+
+export let subscriber = (observer) => {
+    renderEntireTree = observer
 }
 export default state
