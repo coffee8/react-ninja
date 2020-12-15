@@ -1,5 +1,3 @@
-
-
 const store = {
     state: {
         dialogsPage: {
@@ -44,8 +42,28 @@ const store = {
 
     renderEntireTree() {
         console.log('Hiiiiiii')
-    }
+    },
 
+    dispatch(action) {
+        debugger
+        switch (action.type) {
+            case `ADD-POST`:
+                let newPost = {
+                    id: 5,
+                    message: this.state.profilePage.newPostText,
+                    likeCount: 0
+                }
+                this.state.profilePage.postData.push(newPost)
+                this.state.profilePage.newPostText = ''
+                this.renderEntireTree(this.state)
+                break;
+                debugger
+            case `UPDATE-NEW-POST-TEXT`:
+                this.state.profilePage.newPostText = action.newText;
+                this.renderEntireTree(this.state)
+                break;
+        }
+    }
 }
 
 export default store
