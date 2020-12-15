@@ -1,5 +1,7 @@
 const ADD_POST = `ADD-POST`
 const UPDATE_NEW_POST_TEXT = `UPDATE-NEW-POST-TEXT`
+const ADD_MESSAGE = `ADD-MESSAGE`
+const UPDATE_NEW_MESSAGE_TEXT = `UPDATE-NEW-MESSAGE-TEXT`
 
 const store = {
     state: {
@@ -9,7 +11,8 @@ const store = {
                     {name: 'Kolya', id: 2},],
             messageData:
                 [{message: 'Hi', id: 1},
-                    {message: 'Privet', id: 2},]
+                    {message: 'Privet', id: 2},],
+            newMessageText: ''
         },
         profilePage: {
             postData:
@@ -63,6 +66,19 @@ const store = {
                 this.state.profilePage.newPostText = action.newText;
                 this.renderEntireTree(this.state)
                 break;
+            case ADD_MESSAGE:
+                let newMessage = {
+                    id: 42,
+                    message: this.state.dialogsPage.newMessageText
+                }
+                this.state.dialogsPage.messageData.push(newMessage)
+                this.state.dialogsPage.newMessageText = ``
+                this.renderEntireTree(this.state)
+                break;
+            case UPDATE_NEW_MESSAGE_TEXT:
+                this.state.dialogsPage.newMessageText = action.newMessage
+                this.renderEntireTree(this.state)
+                break;
         }
     }
 }
@@ -71,6 +87,11 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (newText) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
+})
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
+export const updateNewMessageTextActionCreator = (newMessage) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    newMessage: newMessage
 })
 
 window.store = store
