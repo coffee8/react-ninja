@@ -40,7 +40,7 @@ const store = {
         this.renderEntireTree(this.state)
     },
 
-    subscriber(observer) {
+    subscribe(observer) {
         this.renderEntireTree = observer
     },
 

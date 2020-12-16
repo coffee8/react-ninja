@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store from './redux/state'
+import store from './redux/reduxStore'
 import reportWebVitals from './reportWebVitals';
 
 let renderEntireTree = (state) => {
@@ -21,4 +21,7 @@ let renderEntireTree = (state) => {
 
 renderEntireTree(store.getState())
 
-store.subscriber(renderEntireTree)
+store.subscribe(() => {
+    let state = store.getState()
+    renderEntireTree(state)
+})
