@@ -1,6 +1,6 @@
 const ADD_POST = `ADD-POST`
 const UPDATE_NEW_POST_TEXT = `UPDATE-NEW-POST-TEXT`
-const ADD_MESSAGE = `ADD-MESSAGE`
+const SEND_MESSAGE = `SEND-MESSAGE`
 const UPDATE_NEW_MESSAGE_TEXT = `UPDATE-NEW-MESSAGE-TEXT`
 
 const store = {
@@ -66,7 +66,7 @@ const store = {
                 this.state.profilePage.newPostText = action.newText;
                 this.renderEntireTree(this.state)
                 break;
-            case ADD_MESSAGE:
+            case SEND_MESSAGE:
                 let newMessage = {
                     id: 42,
                     message: this.state.dialogsPage.newMessageText
@@ -88,7 +88,7 @@ export const updateNewPostTextActionCreator = (newText) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
 })
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
 export const updateNewMessageTextActionCreator = (newMessage) => ({
     type: UPDATE_NEW_MESSAGE_TEXT,
     newMessage: newMessage
