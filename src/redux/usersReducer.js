@@ -3,22 +3,22 @@ const SET_USERS = `SET_USERS`;
 
 const initialState = {
     users: [
-        {
-            name: 'Burak Keko',
-            id: 1,
-            location: 'Istanbul, Turkey',
-            status: 'Hii',
-            followed: false,
-            avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-        },
-        {
-            name: 'Kenan Ke',
-            id: 2,
-            location: 'Tekirdag, Turkey',
-            status: 'devamke',
-            followed: true,
-            avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-        }
+        // {
+        //     name: 'Burak Keko',
+        //     id: 1,
+        //     location: 'Istanbul, Turkey',
+        //     status: 'Hii',
+        //     followed: false,
+        //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
+        // },
+        // {
+        //     name: 'Kenan Ke',
+        //     id: 2,
+        //     location: 'Tekirdag, Turkey',
+        //     status: 'devamke',
+        //     followed: true,
+        //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
+        // }
     ]
 }
 

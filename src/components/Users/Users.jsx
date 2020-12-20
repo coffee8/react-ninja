@@ -1,6 +1,26 @@
 import s from './User.module.css'
 
 const Users = (props) => {
+    if (props.users.length === 0) {
+        props.setUsers([
+            {
+                name: 'Burak Keko',
+                id: 1,
+                location: 'Istanbul, Turkey',
+                status: 'Hii',
+                followed: false,
+                avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
+            },
+            {
+                name: 'Kenan Ke',
+                id: 2,
+                location: 'Tekirdag, Turkey',
+                status: 'devamke',
+                followed: true,
+                avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
+            }
+        ])
+    }
 
     return (
         <div>
