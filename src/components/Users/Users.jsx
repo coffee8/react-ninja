@@ -1,8 +1,9 @@
 import s from './User.module.css'
 import * as axios from 'axios'
 import userPhoto from '../../assets/images/userPhoto.png'
+import * as React from "react";
 
-const Users = (props) => {
+class Users extends React.Component {
     // {
     //     name: 'Burak Keko',
     //         id: 1,
@@ -19,26 +20,24 @@ const Users = (props) => {
     //     followed: true,
     //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
     // }
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response =>
-                props.setUsers(response.data.items))
-        }
+    constructor(props) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response =>
+            this.props.setUsers(response.data.items))
+
     }
-    return (
-        <div>
-            <div>
-                <button onClick={getUsers}>Get Users</button>
-            </div>
-            {
-                props.users.map(u => <div key={u.id}>
+
+    render() {
+        return (
+            <div> {
+                this.props.users.map(u => <div key={u.id}>
                     <span>
                         <div className={s.item}>
                             <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => props.onFollow(u.id)}>Unfollow</button>
-                                : <button onClick={() => props.onFollow(u.id)}>Follow</button>}
+                            {u.followed ? <button onClick={() => this.props.onFollow(u.id)}>Unfollow</button>
+                                : <button onClick={() => this.props.onFollow(u.id)}>Follow</button>}
                         </div>
                     </span>
                     <span>
@@ -53,8 +52,9 @@ const Users = (props) => {
                     </span>
                 </div>)
             }
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default Users
