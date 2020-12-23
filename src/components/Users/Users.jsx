@@ -4,27 +4,10 @@ import userPhoto from '../../assets/images/userPhoto.png'
 import * as React from "react";
 
 class Users extends React.Component {
-    // {
-    //     name: 'Burak Keko',
-    //         id: 1,
-    //     location: 'Istanbul, Turkey',
-    //     status: 'Hii',
-    //     followed: false,
-    //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-    // },
-    // {
-    //     name: 'Kenan Ke',
-    //         id: 2,
-    //     location: 'Tekirdag, Turkey',
-    //     status: 'devamke',
-    //     followed: true,
-    //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-    // }
-    constructor(props) {
-        super(props);
+
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response =>
             this.props.setUsers(response.data.items))
-
     }
 
     render() {
