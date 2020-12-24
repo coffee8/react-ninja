@@ -1,25 +1,13 @@
 const TOGGLE_FOLLOW = `TOGGLE_FOLLOW`
-const SET_USERS = `SET_USERS`;
+const SET_USERS = `SET_USERS`
+const SET_CURRENT_PAGE = `SET_CURRENT_PAGE`
+const SET_TOTAL_COUNT = `SET_TOTAL_COUNT`
 
 const initialState = {
-    users: [
-        // {
-        //     name: 'Burak Keko',
-        //     id: 1,
-        //     location: 'Istanbul, Turkey',
-        //     status: 'Hii',
-        //     followed: false,
-        //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-        // },
-        // {
-        //     name: 'Kenan Ke',
-        //     id: 2,
-        //     location: 'Tekirdag, Turkey',
-        //     status: 'devamke',
-        //     followed: true,
-        //     avatar: `https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg`
-        // }
-    ]
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -36,7 +24,17 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_TOTAL_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalCount
             }
         default:
             return state
@@ -45,5 +43,7 @@ const usersReducer = (state = initialState, action) => {
 
 export const onFollowActionCreator = (userId) => ({type: TOGGLE_FOLLOW, userId})
 export const setUsersActionCreator = (users) => ({type: SET_USERS, users})
+export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersActionCreator = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
 
 export default usersReducer
