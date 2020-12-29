@@ -1,11 +1,19 @@
 .header {
     grid-area: h;
     background-color: aquamarine;
-    /* width: 100%;
-    position: relative; */
+    width: 100%;
+    position: relative;
   }
 
  .header img {
     width: 50px;
   }
 
+
+ .login {
+     float: right;
+ }
+
+ .login a {
+     color: white;
+ }
