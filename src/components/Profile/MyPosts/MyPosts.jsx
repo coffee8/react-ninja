@@ -1,6 +1,6 @@
 import p from './MyPosts.module.css'
 import Post from './Post/Post'
-import * as React from "react";
+import * as React from 'react';
 
 const MyPosts = (props) => {
     let postsElements = props
@@ -16,7 +16,7 @@ const MyPosts = (props) => {
 
     let onPostChange = () => {
         let text = newPostElement.current.value
-        props.onPostChange(text)
+        props.updateNewPostText(text)
     }
 
     return (

@@ -9,12 +9,12 @@ const Dialogs = (props) => {
     let messages = props.dialogsPage.messageData.map(m => <Message message={m.message}/>)
 
     let onSendMessageClick = () => {
-        props.onSendMessageClick()
+        props.sendMessage()
     }
 
     let onMessageChange = (e) => {
         let text = e.target.value
-        props.onMessageChange(text)
+        props.updateNewMessageText(text)
     }
 
     return (

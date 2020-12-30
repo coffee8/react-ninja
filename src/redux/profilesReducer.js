@@ -38,8 +38,8 @@ const profilesReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (newText) => ({
+export const addPost = () => ({type: ADD_POST})
+export const updateNewPostText= (newText) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
 })
