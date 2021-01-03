@@ -1,43 +1,34 @@
-import Users from "./Users";
-import {connect} from "react-redux";
-import * as React from "react";
+import Users from './Users';
+import {connect} from 'react-redux'
+import * as React from 'react'
 import {
     onFollow,
     setCurrentPage,
     setTotalUsers,
     setUsers,
     toggleIsFetching
-} from "../../redux/usersReducer";
-import * as axios from "axios";
-import Preloader from "../../assets/preloader/Preloader";
+} from '../../redux/usersReducer'
+import Preloader from '../../assets/preloader/Preloader'
+import {userAPI} from '../../api/api'
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {
-                withCredentials: true
-            })
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsers(response.data.totalCount)
-            })
+        userAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+            this.props.toggleIsFetching(false)
+            this.props.setUsers(data.items)
+            this.props.setTotalUsers(data.totalCount)
+        })
     }
 
     onPageChanged = (pageNumber) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {
-                withCredentials: true
-            })
-            .then(response => {
-                    this.props.toggleIsFetching(false)
-                    this.props.setUsers(response.data.items)
-                }
-            )
+        userAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
+            this.props.toggleIsFetching(false)
+            this.props.setUsers(data.items)
+        })
     }
 
     render() {
