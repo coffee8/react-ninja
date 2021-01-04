@@ -1,7 +1,7 @@
 import s from "./User.module.css";
 import userPhoto from "../../assets/images/userPhoto.png";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
+import {userAPI} from "../../api/api";
 
 
 let Users = (props) => {
@@ -11,7 +11,6 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     return (
         <div>
             <div>
@@ -31,15 +30,9 @@ let Users = (props) => {
                         </div>
                         <div>
                             {u.followed ? <button onClick={() => {
-                                    axios.delete(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "48ced017-e897-4d0f-ba53-2ad549823479"
-                                            }
-                                        })
+                                    userAPI.unfollowProfile(u.id)
                                         .then(response => {
-                                            if (response.data.resultCode === 0) {
+                                            if (response) {
                                                 props.onFollow(u.id)
                                             }
                                         })
@@ -47,15 +40,9 @@ let Users = (props) => {
                                     Unfollow
                                 </button>
                                 : <button onClick={() =>
-                                    axios.post(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "48ced017-e897-4d0f-ba53-2ad549823479"
-                                            }
-                                        })
+                                    userAPI.followProfile(u.id)
                                         .then(response => {
-                                            if (response.data.resultCode === 0) {
+                                            if (response) {
                                                 props.onFollow(u.id)
                                             }
                                         })}>
