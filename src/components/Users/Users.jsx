@@ -29,23 +29,30 @@ let Users = (props) => {
                             </NavLink>
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => {
+                            {u.followed ? <button disabled={props.followingInProgress
+                                    .some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingInProgress(true, u.id);
                                     userAPI.unfollowProfile(u.id)
                                         .then(response => {
                                             if (response) {
-                                                props.onFollow(u.id)
+                                                props.onFollow(u.id);
                                             }
+                                            props.toggleFollowingInProgress(false, u.id);
                                         })
                                 }}>
                                     Unfollow
                                 </button>
-                                : <button onClick={() =>
+                                : <button disabled={props.followingInProgress
+                                    .some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingInProgress(true, u.id);
                                     userAPI.followProfile(u.id)
                                         .then(response => {
                                             if (response) {
-                                                props.onFollow(u.id)
+                                                props.onFollow(u.id);
                                             }
-                                        })}>
+                                            props.toggleFollowingInProgress(false, u.id);
+                                        })
+                                }}>
                                     Follow
                                 </button>}
                         </div>
