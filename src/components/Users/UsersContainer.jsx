@@ -2,34 +2,24 @@ import Users from './Users';
 import {connect} from 'react-redux'
 import * as React from 'react'
 import {
+    followProfile,
+    getUsers,
     onFollow,
     setCurrentPage,
-    setTotalUsers,
-    setUsers,
     toggleFollowingInProgress,
-    toggleIsFetching
+    unfollowProfile
 } from '../../redux/usersReducer'
 import Preloader from '../../assets/preloader/Preloader'
-import {userAPI} from '../../api/api'
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        userAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUsers(data.totalCount)
-        })
+        this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        userAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        })
+        this.props.getUsers(this.props.pageSize, pageNumber);
+        this.props.setCurrentPage(pageNumber);
     }
 
     render() {
@@ -42,9 +32,9 @@ class UsersContainer extends React.Component {
                        users={this.props.users}
                        followed={this.props.followed}
                        onPageChanged={this.onPageChanged}
-                       onFollow={this.props.onFollow}
-                       toggleFollowingInProgress={this.props.toggleFollowingInProgress}
                        followingInProgress={this.props.followingInProgress}
+                       unfollowProfile={this.props.unfollowProfile}
+                       followProfile={this.props.followProfile}
                 />
             </div>
         )
@@ -82,4 +72,7 @@ let mapStateToProps = (state) => {
 // }
 
 export default connect(mapStateToProps,
-    {onFollow, setUsers, setCurrentPage, setTotalUsers, toggleIsFetching, toggleFollowingInProgress})(UsersContainer);
+    {
+        onFollow, setCurrentPage,
+        toggleFollowingInProgress, getUsers,
+        unfollowProfile, followProfile})(UsersContainer);
