@@ -13,34 +13,29 @@ export const userAPI = {
     getUsers(pageSize = 10, currentPage = 1) {
         return instance.get(`users?count=${pageSize}&page=${currentPage}`)
             .then(response => {
-                return response.data
+                return response.data;
             });
     },
-    auth() {
-        return instance.get(`auth/me`)
-            .then(response => {
-                    return response.data
-                }
-            )
-    },
+
     getProfile(userId) {
         return instance.get(`profile/${userId}`)
             .then(response => {
-                return response.data
-            })
+                return response.data;
+            });
 
     },
+
     unfollowProfile(userId) {
-        return instance.get(`follow/${userId}`)
-            .then(response => {
-                return response
-            })
+        return instance.get(`follow/${userId}`);
     },
+
     followProfile(userId) {
-        return instance.get(`follow/${userId}`)
-            .then(response => {
-                return response
-            })
+        return instance.get(`follow/${userId}`);
     }
 }
 
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`);
+    },
+}

@@ -75,4 +75,5 @@ export default connect(mapStateToProps,
     {
         onFollow, setCurrentPage,
         toggleFollowingInProgress, getUsers,
-        unfollowProfile, followProfile})(UsersContainer);
+        unfollowProfile, followProfile
+    })(UsersContainer);

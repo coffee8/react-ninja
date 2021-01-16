@@ -1,4 +1,4 @@
-import {userAPI} from "../api/api";
+import {userAPI} from '../api/api';
 
 const TOGGLE_FOLLOW = `TOGGLE_FOLLOW`;
 const SET_USERS = `SET_USERS`;
@@ -69,6 +69,7 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
     isFetching,
     userId
 });
+
 export const getUsers = (pageSize, currentPage) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
@@ -79,6 +80,7 @@ export const getUsers = (pageSize, currentPage) => {
         });
     }
 };
+
 export const unfollowProfile = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
@@ -91,6 +93,7 @@ export const unfollowProfile = (userId) => {
             })
     };
 };
+
 export const followProfile = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
@@ -103,4 +106,5 @@ export const followProfile = (userId) => {
             })
     };
 };
+
 export default usersReducer
