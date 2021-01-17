@@ -1,6 +1,6 @@
 import Users from './Users';
-import {connect} from 'react-redux'
-import * as React from 'react'
+import {connect} from 'react-redux';
+import * as React from 'react';
 import {
     followProfile,
     getUsers,
@@ -8,8 +8,9 @@ import {
     setCurrentPage,
     toggleFollowingInProgress,
     unfollowProfile
-} from '../../redux/usersReducer'
-import Preloader from '../../assets/preloader/Preloader'
+} from '../../redux/usersReducer';
+import Preloader from '../../assets/preloader/Preloader';
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 
 class UsersContainer extends React.Component {
 
@@ -49,8 +50,8 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
-    }
-}
+    };
+};
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         onFollow: (userId) => {
@@ -71,9 +72,11 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+
 export default connect(mapStateToProps,
     {
         onFollow, setCurrentPage,
         toggleFollowingInProgress, getUsers,
         unfollowProfile, followProfile
-    })(UsersContainer);
+    })(AuthRedirectComponent);

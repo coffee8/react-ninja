@@ -3,7 +3,6 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-    alert(props.isAuth)
     return (
         <div className={p.content}>
             <div>
