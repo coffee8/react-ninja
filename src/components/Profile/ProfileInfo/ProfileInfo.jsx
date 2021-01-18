@@ -1,21 +1,23 @@
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.css';
 import Preloader from "../../../assets/preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
-        return <Preloader/>
+        return <Preloader/>;
     }
     return (
         <div>
-            <div className={s.margin}>
+            {/*<div className={s.margin}>
                 <img src='https://www.pics4learning.com/images/pics-banner1-1300.jpg'></img>
-            </div>
-            <div className={s.margin}>
+            </div>*/}
+
+            <div className={s.item} >
                 <img src={props.profile.photos.large}/>
-                ava + description
+                <ProfileStatus status={"Hi there"}/>
             </div>
         </div>
     )
 }
 
-export default ProfileInfo
+export default ProfileInfo;

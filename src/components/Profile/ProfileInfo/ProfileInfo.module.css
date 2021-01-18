@@ -1,3 +1,6 @@
 .margin {
     margin: 10px;
 }
+.item img {
+    width: 200px;
+}
