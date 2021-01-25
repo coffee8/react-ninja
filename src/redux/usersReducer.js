@@ -22,9 +22,10 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userId)
+                    if (u.id === action.userId) {
                         return {...u, followed: !u.followed}
-                    return u
+                    }
+                    return u;
                 })
             }
         case SET_USERS:
@@ -86,7 +87,7 @@ export const unfollowProfile = (userId) => {
         dispatch(toggleFollowingInProgress(true, userId));
         userAPI.unfollowProfile(userId)
             .then(response => {
-                if (response) {
+                if (response.data.resultCode === 0) {
                     dispatch(onFollow(userId));
                 }
                 dispatch(toggleFollowingInProgress(false, userId));
@@ -97,9 +98,9 @@ export const unfollowProfile = (userId) => {
 export const followProfile = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
-        userAPI.unfollowProfile(userId)
+        userAPI.followProfile(userId)
             .then(response => {
-                if (response) {
+                if (response.data.resultCode === 0) {
                     dispatch(onFollow(userId));
                 }
                 dispatch(toggleFollowingInProgress(false, userId));

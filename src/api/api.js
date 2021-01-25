@@ -23,11 +23,11 @@ export const userAPI = {
     },
 
     unfollowProfile(userId) {
-        return instance.get(`follow/${userId}`);
+        return instance.delete(`follow/${userId}`);
     },
 
     followProfile(userId) {
-        return instance.get(`follow/${userId}`);
+        return instance.post(`follow/${userId}`);
     }
 }
 

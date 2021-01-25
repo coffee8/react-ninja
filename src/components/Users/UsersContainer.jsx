@@ -7,7 +7,7 @@ import {
     onFollow,
     setCurrentPage,
     toggleFollowingInProgress,
-    unfollowProfile
+    unfollowProfile,
 } from '../../redux/usersReducer';
 import Preloader from '../../assets/preloader/Preloader';
 import {compose} from "redux";
