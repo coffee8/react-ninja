@@ -1,9 +1,10 @@
 import p from './MyPosts.module.css'
 import Post from './Post/Post'
-import * as React from 'react';
+import React from 'react';
 import AddPostReduxForm from "./AddPostForm";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
+    console.log("rsntieasntarseitnaro")
     let postsElements = props
         .postElements
         .postData
@@ -20,7 +21,7 @@ const MyPosts = (props) => {
             </div>
             <div className={p.margin}>
                 <div>
-                <AddPostReduxForm onSubmit={addNewPost}/>
+                    <AddPostReduxForm onSubmit={addNewPost}/>
                 </div>
             </div>
             <div className={`${p.posts} ${p.margin}`}>
@@ -28,6 +29,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+});
 
 export default MyPosts;
