@@ -22,9 +22,9 @@ const ProfileStatusWithHooks = (props) => {
         setStatus(e.currentTarget.value);
     };
 
-    // useEffect(() => {
-    //
-    // }, [props.status]);
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status]);
 
     return (
         <div>
@@ -46,6 +46,5 @@ const ProfileStatusWithHooks = (props) => {
         </div>
     );
 }
-
 
 export default ProfileStatusWithHooks;
