@@ -25,9 +25,9 @@ const Login = (props) => {
     );
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={'Email'}
                        name={'email'}
@@ -46,7 +46,7 @@ const LoginForm = (props) => {
 
             </div>
             <div> {
-                props.error && <div className={style.formAuthError}> {props.error} </div>
+                error && <div className={style.formAuthError}> {error} </div>
             }
             </div>
             <div>
@@ -69,4 +69,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {login})(Login);
+export default  connect(mapStateToProps, {login})(Login);

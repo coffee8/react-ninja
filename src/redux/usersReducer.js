@@ -71,41 +71,35 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
     userId
 });
 
-export const requestUsers = (pageSize, currentPage) => {
-    return (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        userAPI.getUsers(pageSize, currentPage).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsers(data.totalCount));
-        });
-    }
+export const requestUsers = (pageSize, currentPage) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    let data = await userAPI.getUsers(pageSize, currentPage)
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsers(data.totalCount));
 };
 
+const followUnfollowFlow = async (dispatch, userId, apiMethod) => {
+    dispatch(toggleFollowingInProgress(true, userId));
+    let response = await apiMethod(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(onFollow(userId));
+    }
+    dispatch(toggleFollowingInProgress(false, userId));
+}
+
 export const unfollowProfile = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId));
-        userAPI.unfollowProfile(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(onFollow(userId));
-                }
-                dispatch(toggleFollowingInProgress(false, userId));
-            })
+    return async (dispatch) => {
+        let apiMethod = userAPI.unfollowProfile.bind(userAPI);
+        await followUnfollowFlow(dispatch, userId, apiMethod);
     };
 };
 
 export const followProfile = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId));
-        userAPI.followProfile(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(onFollow(userId));
-                }
-                dispatch(toggleFollowingInProgress(false, userId));
-            })
+    return async (dispatch) => {
+        let apiMethod = userAPI.followProfile.bind(userAPI);
+        await followUnfollowFlow(dispatch, userId, apiMethod);
     };
 };
 
-export default usersReducer
+export default usersReducer;
