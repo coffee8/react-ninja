@@ -4,7 +4,7 @@ import React from 'react';
 import AddPostReduxForm from "./AddPostForm";
 
 const MyPosts = React.memo(props => {
-    console.log("rsntieasntarseitnaro")
+
     let postsElements = props
         .postElements
         .postData
