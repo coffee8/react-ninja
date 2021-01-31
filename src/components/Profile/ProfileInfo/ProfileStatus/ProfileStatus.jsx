@@ -1,4 +1,4 @@
-import s from './ProfileInfo.module.css'
+import s from '../ProfileInfo.module.css'
 import * as React from "react";
 
 class ProfileStatus extends React.Component {

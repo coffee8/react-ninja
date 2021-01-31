@@ -8,7 +8,7 @@ const MyPosts = React.memo(props => {
     let postsElements = props
         .postElements
         .postData
-        .map(p => <div><Post message={p.message} likeCount={p.likeCount}/></div>);
+        .map(p => <div><Post key={p.id} message={p.message} likeCount={p.likeCount}/></div>);
 
     let addNewPost = (values) => {
         props.addPost(values.newPostText);
@@ -16,8 +16,8 @@ const MyPosts = React.memo(props => {
 
     return (
         <div>
-            <div className={p.margin}>
-                my posts
+            <div className={p.postHeader}>
+                <b>my posts</b>
             </div>
             <div className={p.margin}>
                 <div>
