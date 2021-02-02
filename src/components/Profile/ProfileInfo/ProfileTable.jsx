@@ -1,8 +1,11 @@
 import Contact from "./Contact";
 
-const ProfileTable = ({profile}) => {
+const ProfileTable = ({profile, isOwner, activateEditMode}) => {
     return (
         <div>
+            {isOwner && <div>
+                <button onClick={activateEditMode}> Edit</button>
+            </div>}
             <div>
                 <b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}
             </div>

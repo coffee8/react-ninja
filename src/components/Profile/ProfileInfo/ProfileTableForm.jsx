@@ -1,29 +1,106 @@
-import Contact from "./Contact";
+/*
+import {Field, reduxForm} from "redux-form";
+import {Input, Textarea} from "../../../commons/FormsControl/FormsControl";
+import React from "react";
 
-const ProfileTableForm = ({profile}) => {
+const ProfileTableForm = ({profile, handleSubmit}) => {
     return (
-        <div>cvbktdhntdh
+        <form onSubmit={handleSubmit}>
             <div>
-                <b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}
+                <Field placeholder={'Full name'}
+                       name={'fullName'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}/>
+            </div>
+            <div> Looking for a job
+                <Field placeholder={'Looking for a job'}
+                       name={'lookingForAJob'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                       type={'checkbox'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'Professional skills'}
+                       name={'lookingForAJobDescription'}
+                       validate={[]}
+                       component={Textarea}
+                       element={'textarea'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'Facebook'}
+                       name={'facebook'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'website'}
+                       name={'website'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'vk'}
+                       name={'vk'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'twitter'}
+                       name={'twitter'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'instagram'}
+                       name={'instagram'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
+            </div>
+            <div>
+                <Field placeholder={'youtube'}
+                       name={'youtube'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
             </div>
 
             <div>
-                {profile.lookingForAJob &&
-                <div><b>Description: </b>{profile.lookingForAJobDescription}</div>}
+                <Field placeholder={'github'}
+                       name={'github'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
             </div>
-
             <div>
-                <b>Contacts:</b>
-                {Object
-                    .keys(profile.contacts)
-                    .map(key => {
-                            return <Contact key={key} contactTitle={key}
-                                            contactValue={profile.contacts[key]}/>
-                        }
-                    )}
+                <Field placeholder={'mainLink'}
+                       name={'mainLink'}
+                       validate={[]}
+                       component={Input}
+                       element={'input'}
+                />
             </div>
-        </div>
-    )
-};
+            <div><button>Save</button></div>
+        </form>
+    );
+}
 
-export default ProfileTableForm;
+const ProfileTableReduxForm = reduxForm({form: 'profileForm'})(ProfileTableForm)
+
+export default ProfileTableReduxForm;
+*/

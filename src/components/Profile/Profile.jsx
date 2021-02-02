@@ -11,6 +11,7 @@ const Profile = (props) => {
                              updateUserStatus={props.updateUserStatus}
                              isOwner={props.isOwner}
                              updateUserPhoto={props.updateUserPhoto}
+                             updateUserProfile={props.updateUserProfile}
                 />
             </div>
             <div>

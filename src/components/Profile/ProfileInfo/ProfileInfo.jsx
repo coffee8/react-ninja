@@ -1,20 +1,43 @@
 import s from './ProfileInfo.module.css';
 import Preloader from "../../../assets/preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
-import {useState} from "react";
+import React, {useState} from "react";
 import userPhoto from '../../../assets/images/userPhoto.png';
 import ProfileTable from "./ProfileTable";
-import ProfileTableForm from "./ProfileTableForm";
+import ProfileTableFormik from "./ProfileTableFormik";
 
 const ProfileInfo = (props) => {
 
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(false);
+
+    const onSubmit = (formData) => {
+        const formDataJSON = {
+            lookingForAJobDescription: formData.lookingForAJobDescription,
+            lookingForAJob: !!formData.lookingForAJob,
+            fullName: formData.fullName,
+            userId: formData.userId,
+            aboutMe: 'null',
+            contacts: {
+                facebook: formData.facebook,
+                website: formData.website,
+                vk: formData.vk,
+                twitter: formData.twitter,
+                instagram: formData.instagram,
+                youtube: formData.youtube,
+                github: formData.github,
+                mainLink: formData.mainLink
+            }
+        }
+        props.updateUserProfile(formDataJSON).then( () => {
+            setEditMode(false);
+        });
+    }
 
     const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
             props.updateUserPhoto(e.target.files[0]);
         }
-    }
+    };
 
     if (!props.profile) {
         return <Preloader/>;
@@ -29,13 +52,17 @@ const ProfileInfo = (props) => {
                 </div>
 
                 <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
-                <div> {editMode ?
-                    <ProfileTableForm profile={props.profile}/> : <ProfileTable profile={props.profile}/>}
+                <div>
+                    {editMode
+                        ? <ProfileTableFormik profile={props.profile} handleSubmit={onSubmit}/>
+                        : <ProfileTable profile={props.profile} isOwner={props.isOwner}
+                                        activateEditMode={() => {
+                                            setEditMode(true)
+                                        }}/>}
                 </div>
             </div>
         </div>
     );
 };
-
 
 export default ProfileInfo;
