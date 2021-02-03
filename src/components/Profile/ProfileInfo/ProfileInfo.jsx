@@ -20,15 +20,11 @@ const ProfileInfo = (props) => {
             contacts: {
                 facebook: formData.facebook,
                 website: formData.website,
-                vk: formData.vk,
                 twitter: formData.twitter,
-                instagram: formData.instagram,
-                youtube: formData.youtube,
                 github: formData.github,
-                mainLink: formData.mainLink
             }
         }
-        props.updateUserProfile(formDataJSON).then( () => {
+        props.updateUserProfile(formDataJSON).then(() => {
             setEditMode(false);
         });
     }
